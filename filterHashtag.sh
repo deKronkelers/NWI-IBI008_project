@@ -1,2 +1,2 @@
 #!/bin/bash
-grep "#" < data/SentimentAnalysisDataset.csv > data/filteredHashtag.csv
+grep -P "#\w+" < data/SentimentAnalysisDataset.csv > data/filteredHashtag.csv
