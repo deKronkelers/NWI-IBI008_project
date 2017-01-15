@@ -11,10 +11,10 @@ grep -P "(#\w+(.*)?){2,}" ../data/prepared.csv -c
 sortedHashtags=$(grep -Po "#\w+" ../data/prepared.csv | sort | uniq -ic)
 
 echo -n "Nr of unique hashtags: "
-echo "$sortedHashtags" | wc -l
+wc -l <<< "$sortedHashtags"
 
 echo -n "Nr of hashtags only used once: "
-echo "$sortedHashtags" | grep "^\s*1 " -c
+grep "^\s*1 " -c <<< "$sortedHashtags"
 
 echo "10 Most used hashtags:"
-echo "$sortedHashtags" | sort -rg | head -n10
+sort -rg <<< "$sortedHashtags" | head -n10
