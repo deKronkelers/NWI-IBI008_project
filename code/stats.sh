@@ -13,5 +13,8 @@ sortedHashtags=$(grep -Po "#\w+" ../data/prepared.csv | sort | uniq -ic)
 echo -n "Nr of unique hashtags: "
 echo "$sortedHashtags" | wc -l
 
+echo -n "Nr of hashtags only used once: "
+echo "$sortedHashtags" | grep "^\s*1 " -c
+
 echo "10 Most used hashtags:"
 echo "$sortedHashtags" | sort -rg | head -n10
