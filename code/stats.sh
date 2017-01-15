@@ -8,13 +8,18 @@ wc -l ../data/prepared.csv | cut -d" " -f1
 echo -n "Nr of tweets with at least two hashtags: "
 grep -P "(#\w+(.*)?){2,}" ../data/prepared.csv -c
 
-sortedHashtags=$(grep -Po "#\w+" ../data/prepared.csv | sort | uniq -ic)
+sortedHashtags=$(grep -Po "#\w+" ../data/prepared.csv | sort)
+sortedHashtagsFreq=$(echo "$sortedHashtags" | uniq -ic)
 
 echo -n "Nr of unique hashtags: "
-wc -l <<< "$sortedHashtags"
+wc -l <<< "$sortedHashtagsFreq"
 
 echo -n "Nr of hashtags only used once: "
-grep "^\s*1 " -c <<< "$sortedHashtags"
+grep "^\s*1 " -c <<< "$sortedHashtagsFreq"
 
 echo "10 Most used hashtags:"
-sort -rg <<< "$sortedHashtags" | head -n10
+sort -rg <<< "$sortedHashtagsFreq" | head -n10
+
+# Write some statistics to disk to plot them
+awk '{print length}' <<< "$sortedHashtags" | sort -g | uniq -c\
+	> ../data/stats/hashtagFrequencyLength.txt
