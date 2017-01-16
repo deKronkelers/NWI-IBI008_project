@@ -29,7 +29,7 @@ uniq -i <<< "$sortedHashtags" | awk '{print length}' | sort -g | uniq -c\
 
 hashtagCounts=""
 for nr in {2..20}; do
-	count=$(grep -iP "(#\w+\b.*?){$nr}" ../data/prepared.csv -c)
+	count=$(grep -P "(#\w+\b.*?){$nr}" ../data/prepared.csv -c)
 	hashtagCounts="$hashtagCounts$nr $count"$'\n'
 done
 echo -n "$hashtagCounts" > ../data/stats/hashtagFrequenciesCount.txt 
