@@ -27,6 +27,13 @@ awk '{print length}' <<< "$sortedHashtags" | sort -g | uniq -c\
 uniq -i <<< "$sortedHashtags" | awk '{print length}' | sort -g | uniq -c\
 	> ../data/stats/hashtagFrequencyLengthNoDup.txt
 
+hashtagCounts=""
+for nr in {2..20}; do
+	count=$(grep -iP "(#\w+\b.*?){$nr}" ../data/prepared.csv -c)
+	hashtagCounts="$hashtagCounts$nr $count"$'\n'
+done
+echo -n "$hashtagCounts" > ../data/stats/hashtagFrequenciesCount.txt 
+
 hashtagRepetitions=""
 for nr in {1..20}; do
 	count=$(grep -iP "(#\w+\b)(.*?\1\b){$nr}" ../data/prepared.csv -c)
