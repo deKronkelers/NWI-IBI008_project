@@ -8,6 +8,9 @@ wc -l ../data/prepared.csv | cut -d" " -f1
 echo -n "Nr of tweets with at least two hashtags: "
 grep -P "#\w+.*?#\w+" ../data/prepared.csv -c
 
+echo -n "Nr of tweets that contain the same hashtag at least twice: "
+grep -iP "(#\w+\b).*?\1\b" ../data/prepared.csv -c
+
 sortedHashtags=$(grep -Po "#\w+" ../data/prepared.csv | sort)
 sortedHashtagsFreq=$(echo "$sortedHashtags" | uniq -ic)
 
