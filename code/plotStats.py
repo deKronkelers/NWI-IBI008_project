@@ -32,3 +32,13 @@ plt.xlabel("Hashtag repetitions")
 plt.ylabel("Frequency")
 plt.savefig("../plots/hashtagRepetitionsCount.pdf")
 plt.show()
+
+# Plot hashtag count frequencies
+hashtag_freq_count = np.loadtxt("../data/stats/hashtagFrequenciesCount.txt")
+
+plt.plot(hashtag_freq_count[:, 0], hashtag_freq_count[:, 1])
+plt.title("Hashtag count frequencies")
+plt.xlabel("Hashtag count")
+plt.ylabel("Frequency")
+plt.savefig("../plots/hashtagFrequenciesCount.pdf")
+plt.show()
