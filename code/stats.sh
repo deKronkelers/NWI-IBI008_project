@@ -23,3 +23,6 @@ sort -rg <<< "$sortedHashtagsFreq" | head -n10
 # Write some statistics to disk to plot them
 awk '{print length}' <<< "$sortedHashtags" | sort -g | uniq -c\
 	> ../data/stats/hashtagFrequencyLength.txt
+
+uniq -i <<< "$sortedHashtags" | awk '{print length}' | sort -g | uniq -c\
+	> ../data/stats/hashtagFrequencyLengthNoDup.txt
