@@ -8,9 +8,6 @@ wc -l ../data/prepared.csv | cut -d" " -f1
 echo -n "Nr of tweets with at least two hashtags: "
 grep -P "#\w+.*?#\w+" ../data/prepared.csv -c
 
-echo -n "Nr of tweets that contain the same hashtag at least twice: "
-grep -iP "(#\w+\b).*?\1\b" ../data/prepared.csv -c
-
 sortedHashtags=$(grep -Po "#\w+" ../data/prepared.csv | sort)
 sortedHashtagsFreq=$(echo "$sortedHashtags" | uniq -ic)
 
@@ -29,3 +26,10 @@ awk '{print length}' <<< "$sortedHashtags" | sort -g | uniq -c\
 
 uniq -i <<< "$sortedHashtags" | awk '{print length}' | sort -g | uniq -c\
 	> ../data/stats/hashtagFrequencyLengthNoDup.txt
+
+hashtagRepetitions=""
+for nr in {1..20}; do
+	count=$(grep -iP "(#\w+\b)(.*?\1\b){$nr}" ../data/prepared.csv -c)
+	hashtagRepetitions="$hashtagRepetitions$nr $count"$'\n'
+done
+echo -n "$hashtagRepetitions" > ../data/stats/hashtagRepetitionsCount.txt
