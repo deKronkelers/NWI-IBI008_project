@@ -22,3 +22,13 @@ plot_hashtag_freq_len(
     "hashtagFrequencyLengthNoDup"
     , title="Frequency of hashtag lengths (no duplicates)"
 )
+
+# Plot hashtag repetition frequencies
+hashtag_rep_count = np.loadtxt("../data/stats/hashtagRepetitionsCount.txt")
+
+plt.plot(hashtag_rep_count[:, 0], hashtag_rep_count[:, 1])
+plt.title("Hashtag repetition frequencies")
+plt.xlabel("Hashtag repetitions")
+plt.ylabel("Frequency")
+plt.savefig("../plots/hashtagRepetitionsCount.pdf")
+plt.show()
