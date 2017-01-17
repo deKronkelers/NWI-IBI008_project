@@ -31,9 +31,6 @@ for nr in {2..20}; do
 	echo "$nr $(grep -P "(#\w+\b.*?){$nr}" ../data/prepared.csv -c)"
 done > ../data/stats/hashtagFrequenciesCount.txt
 
-hashtagRepetitions=""
 for nr in {1..20}; do
-	count=$(grep -iP "(#\w+\b)(.*?\1\b){$nr}" ../data/prepared.csv -c)
-	hashtagRepetitions="$hashtagRepetitions$nr $count"$'\n'
-done
-echo -n "$hashtagRepetitions" > ../data/stats/hashtagRepetitionsCount.txt
+	echo "$nr $(grep -iP "(#\w+\b)(.*?\1\b){$nr}" ../data/prepared.csv -c)"
+done > ../data/stats/hashtagRepetitionsCount.txt
