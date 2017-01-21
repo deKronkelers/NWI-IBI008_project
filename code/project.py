@@ -1,7 +1,10 @@
 # author: Hendrik Werner s4549775
+import random
+
 import nltk.classify.util
 from collections import namedtuple
 from nltk.classify import NaiveBayesClassifier
+from sklearn.model_selection import train_test_split
 
 Tweet = namedtuple("DataPoint", ["sentiment", "hashtags"])
 
@@ -36,6 +39,7 @@ def tweet_features(tweet: Tweet):
 
 
 labeled_tweets = [(tweet_features(t), t.sentiment) for t in data]
-classifier = NaiveBayesClassifier.train(labeled_tweets)
-print("Accuracy: ", nltk.classify.accuracy(classifier, labeled_tweets))
+train, test = train_test_split(labeled_tweets)
+
+classifier = NaiveBayesClassifier.train(train)
 classifier.show_most_informative_features()
