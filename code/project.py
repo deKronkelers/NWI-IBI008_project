@@ -1,5 +1,7 @@
 # author: Hendrik Werner s4549775
+import nltk.classify.util
 from collections import namedtuple
+from nltk.classify import NaiveBayesClassifier
 
 Tweet = namedtuple("DataPoint", ["sentiment", "hashtags"])
 
@@ -31,3 +33,9 @@ data = list(filter(lambda d: d.hashtags, data))
 # Extract a feature set containing the hashtags from a tweet
 def tweet_features(tweet: Tweet):
     return dict.fromkeys(tweet.hashtags, True)
+
+
+labeled_tweets = [(tweet_features(t), t.sentiment) for t in data]
+classifier = NaiveBayesClassifier.train(labeled_tweets)
+print("Accuracy: ", nltk.classify.accuracy(classifier, labeled_tweets))
+classifier.show_most_informative_features()
