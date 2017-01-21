@@ -28,7 +28,7 @@ for tweet in data:
         {h for h in tweet.hashtags if h in unique_hashtags}
     )
 
-data = list(filter(lambda d: d.hashtags, data))
+data = filter(lambda d: d.hashtags, data)
 
 
 # Train a classifier
