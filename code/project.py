@@ -24,3 +24,10 @@ for tweet in data:
     )
 
 data = list(filter(lambda d: d.hashtags, data))
+
+
+# Train a classifier
+
+# Extract a feature set containing the hashtags from a tweet
+def tweet_features(tweet: Tweet):
+    return dict.fromkeys(tweet.hashtags, True)
