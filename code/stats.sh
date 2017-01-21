@@ -11,7 +11,7 @@ grep -P "#\w+.*?#\w+" ../data/prepared.csv -c
 sortedHashtags=$(cut -d" " -f2- ../data/prepared.csv | tr " " "\n" | sort)
 sortedHashtagsFreq=$(echo "$sortedHashtags" | uniq -ic)
 
-echo -n "Nr of unique hashtags: "
+echo -n "Nr of distinct hashtags: "
 wc -l <<< "$sortedHashtagsFreq"
 
 echo -n "Nr of hashtags only used once: "
