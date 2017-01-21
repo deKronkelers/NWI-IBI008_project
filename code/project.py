@@ -42,4 +42,5 @@ labeled_tweets = [(tweet_features(t), t.sentiment) for t in data]
 train, test = train_test_split(labeled_tweets)
 
 classifier = NaiveBayesClassifier.train(train)
+print("Naive Bayes accuracy:", nltk.classify.accuracy(classifier, test))
 classifier.show_most_informative_features()
