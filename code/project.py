@@ -10,7 +10,7 @@ for line in open("../data/prepared.csv"):
     split_line = line.strip().split(sep=", ")
     data.append(Tweet(
         int(split_line[0])
-        , set(split_line[1].split())
+        , set(split_line[1].lower().split())
     ))
 
 # Remove outliers from the data set
