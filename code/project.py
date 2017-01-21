@@ -18,7 +18,7 @@ unique_hashtags = set()
 for line in open("../data/hashtagsUsedInSingleTweet.txt"):
     unique_hashtags.add(line.strip())
 
-for i, tweet in enumerate(data):
+for tweet in data:
     tweet.hashtags.difference_update(
         {h for h in tweet.hashtags if h in unique_hashtags}
     )
