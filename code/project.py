@@ -31,7 +31,7 @@ for tweet in data:
 data = filter(lambda d: d.hashtags, data)
 
 
-# Train a classifier
+# Train classifiers
 
 # Extract a feature set containing the hashtags from a tweet
 def tweet_features(tweet: Tweet):
