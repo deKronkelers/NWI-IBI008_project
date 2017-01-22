@@ -42,3 +42,13 @@ plt.xlabel("Hashtag count")
 plt.ylabel("Frequency")
 plt.savefig("../plots/hashtagFrequenciesCount.pdf")
 plt.show()
+
+# Plot the Maxent training accuracy
+maxent_training_acc = np.loadtxt("../data/stats/maxentTrainingAccuracy.txt")
+
+plt.plot(range(1, 11), maxent_training_acc)
+plt.title("Maxent Training Accuracy")
+plt.xlabel("Iterations")
+plt.ylabel("Accuracy")
+plt.savefig("../plots/maxentTrainingAccuracy.pdf")
+plt.show()
