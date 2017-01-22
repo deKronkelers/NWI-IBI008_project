@@ -3,7 +3,7 @@ import random
 
 import nltk.classify.util
 from collections import namedtuple
-from nltk.classify import NaiveBayesClassifier
+from nltk.classify import NaiveBayesClassifier, maxent
 from sklearn.model_selection import train_test_split
 
 Tweet = namedtuple("DataPoint", ["sentiment", "hashtags"])
@@ -44,3 +44,7 @@ train, test = train_test_split(labeled_tweets)
 classifier = NaiveBayesClassifier.train(train)
 print("Naive Bayes accuracy:", nltk.classify.accuracy(classifier, test))
 classifier.show_most_informative_features()
+
+max_ent = maxent.MaxentClassifier.train(train, max_iter=10)
+print("Maxent accuracy:", nltk.classify.accuracy(max_ent, test))
+max_ent.show_most_informative_features()
