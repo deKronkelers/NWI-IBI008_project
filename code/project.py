@@ -21,7 +21,7 @@ for line in open("../data/prepared.csv"):
 # Remove outliers from the data set
 unique_hashtags = set()
 for line in open("../data/hashtagsUsedInSingleTweet.txt"):
-    unique_hashtags.add(line.strip())
+    unique_hashtags.add(line.strip().lower())
 
 for tweet in data:
     tweet.hashtags.difference_update(
